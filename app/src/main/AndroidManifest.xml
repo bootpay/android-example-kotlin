@@ -19,6 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".WebAppActivity"/>
+        <activity android:name=".DefaultPaymentActivity"/>
+        <activity android:name=".TotalPaymentActivity"/>
+        <activity android:name=".SubscriptionActivity"/>
+        <activity android:name=".SubscriptionBootpayActivity"/>
+        <activity android:name=".AuthenticationActivity"/>
+        <activity android:name=".PasswordPaymentActivity"/>
+        <activity android:name=".BioPaymentActivity"/>
+        <activity android:name=".PasswordUIPaymentActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
