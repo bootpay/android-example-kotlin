@@ -60,8 +60,7 @@ class SubscriptionBootpayActivity: AppCompatActivity() {
                     Log.d("bootpay", "error: $data")
                 }
 
-                override fun onClose(data: String) {
-                    Log.d("bootpay", "close: $data")
+                override fun onClose() {
                     Bootpay.removePaymentWindow()
                 }
 

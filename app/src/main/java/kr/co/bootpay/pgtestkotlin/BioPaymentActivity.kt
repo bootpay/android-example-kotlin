@@ -10,6 +10,7 @@ import kr.co.bootpay.android.models.BootExtra
 import kr.co.bootpay.android.models.BootItem
 import kr.co.bootpay.android.models.BootUser
 import kr.co.bootpay.bio.BootpayBio
+import kr.co.bootpay.bio.models.BioExtra
 import kr.co.bootpay.bio.models.BioPayload
 import kr.co.bootpay.bio.models.BioPrice
 import kr.co.bootpay.pgtestkotlin.deprecated.BootpayRest
@@ -57,7 +58,7 @@ class BioPaymentActivity : AppCompatActivity(), BootpayRestImplement {
 
     fun BootpayTest(userToken: String?) {
         val user = BootUser().setPhone("010-1234-5678") // 구매자 정보
-        val extra = BootExtra()
+        val extra = BioExtra()
         val items: MutableList<BootItem> = ArrayList()
         val item1 = BootItem().setName("마우's 스").setId("ITEM_CODE_MOUSE").setQty(1).setPrice(500.0)
         val item2 = BootItem().setName("키보드").setId("ITEM_KEYBOARD_MOUSE").setQty(1).setPrice(500.0)
@@ -98,8 +99,7 @@ class BioPaymentActivity : AppCompatActivity(), BootpayRestImplement {
                     Log.d("bootpay", "error: $data")
                 }
 
-                override fun onClose(data: String) {
-                    Log.d("bootpay", "close: $data")
+                override fun onClose() {
                     BootpayBio.removePaymentWindow()
                 }
 
