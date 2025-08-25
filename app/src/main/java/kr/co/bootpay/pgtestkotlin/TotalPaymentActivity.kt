@@ -49,7 +49,7 @@ class TotalPaymentActivity: AppCompatActivity() {
         map["3"] = 1234
         payload.metadata = map
         //        payload.setMetadata(new Gson().toJson(map));
-        Bootpay.init(supportFragmentManager, applicationContext)
+        Bootpay.init(this)
             .setPayload(payload)
             .setEventListener(object : BootpayEventListener {
                 override fun onCancel(data: String) {

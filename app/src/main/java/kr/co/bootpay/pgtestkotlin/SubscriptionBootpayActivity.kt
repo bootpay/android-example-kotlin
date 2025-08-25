@@ -25,8 +25,8 @@ class SubscriptionBootpayActivity: AppCompatActivity() {
 
 
     fun PaymentTest(v: View?) {
-        val extra = BootExtra()
-            .setCardQuota("0,2,3") // 일시불, 2개월, 3개월 할부 허용, 할부는 최대 12개월까지 사용됨 (5만원 이상 구매시 할부허용 범위)
+        val extra = BootExtra().setSubscribeTestPayment(true)
+//            .setCardQuota("0,2,3") // 일시불, 2개월, 3개월 할부 허용, 할부는 최대 12개월까지 사용됨 (5만원 이상 구매시 할부허용 범위)
         val items: MutableList<BootItem> = ArrayList()
         val item1 = BootItem().setName("마우's 스").setId("ITEM_CODE_MOUSE").setQty(1).setPrice(500.0)
         val item2 = BootItem().setName("키보드").setId("ITEM_KEYBOARD_MOUSE").setQty(1).setPrice(500.0)
@@ -36,10 +36,11 @@ class SubscriptionBootpayActivity: AppCompatActivity() {
 
         payload.setApplicationId(applicationId)
             .setOrderName("부트페이 결제테스트")
-            .setPg("웰컴")
+            .setPg("나이스페이")
             .setMethod("카드자동")
             .setOrderId("1234")
-            .setPrice(1000.0)
+
+            .setPrice(0.0)
             .setUser(getBootUser())
             .setExtra(extra).items = items
 
@@ -48,8 +49,10 @@ class SubscriptionBootpayActivity: AppCompatActivity() {
         map["2"] = "abcdef55"
         map["3"] = 1234
         payload.metadata = map
+//        payload.bil
+
         //        payload.setMetadata(new Gson().toJson(map));
-        Bootpay.init(supportFragmentManager, applicationContext)
+        Bootpay.init(this)
             .setPayload(payload)
             .setEventListener(object : BootpayEventListener {
                 override fun onCancel(data: String) {

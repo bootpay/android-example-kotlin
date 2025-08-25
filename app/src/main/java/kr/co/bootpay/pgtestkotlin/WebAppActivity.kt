@@ -12,6 +12,6 @@ class WebAppActivity: AppCompatActivity() {
         val webView = findViewById<BootpayWebView>(R.id.webview)
 
         //link your domain
-        webView.loadUrl("https://d-cdn.bootapi.com/test/payment/")
+        webView.loadUrl("https://ilovekorea.playmore.co.kr/mycoin_list.php")
     }
 }

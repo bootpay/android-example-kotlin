@@ -84,7 +84,7 @@ class PasswordPaymentActivity: AppCompatActivity(), BootpayRestImplement {
 //        payload.setMetadata(new Gson().toJson(map));
 
         //        payload.setMetadata(new Gson().toJson(map));
-        Bootpay.init(supportFragmentManager, applicationContext)
+        Bootpay.init(this)
             .setPayload(payload)
             .setEventListener(object : BootpayEventListener {
                 override fun onCancel(data: String) {
