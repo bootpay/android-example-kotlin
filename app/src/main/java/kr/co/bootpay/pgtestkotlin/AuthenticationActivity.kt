@@ -31,7 +31,7 @@ class AuthenticationActivity: AppCompatActivity() {
         items.add(item2)
 
         val payload = Payload()
-        payload.setApplicationId("5b8f6a4d396fa665fdc2b5e8")
+        payload.setApplicationId(BootpayConfig.applicationId)
             .setOrderName("부트페이 결제테스트")
             .setPg("다날")
             .setMethod("본인인증") //                .setOrderId("1234")

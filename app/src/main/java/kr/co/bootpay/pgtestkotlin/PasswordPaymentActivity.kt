@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.bootpay.android.Bootpay
-import kr.co.bootpay.android.constants.BootpayBuildConfig
 import kr.co.bootpay.android.events.BootpayEventListener
 import kr.co.bootpay.android.models.BootExtra
 import kr.co.bootpay.android.models.BootItem
@@ -17,24 +16,14 @@ import kr.co.bootpay.pgtestkotlin.deprecated.EasyPayUserTokenData
 import kr.co.bootpay.pgtestkotlin.deprecated.TokenData
 
 class PasswordPaymentActivity: AppCompatActivity(), BootpayRestImplement {
-    @Deprecated("")
-    var restApplicationId = "5b8f6a4d396fa665fdc2b5ea" //production
 
-    @Deprecated("")
-    var privateKey = "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=" //production
-    var applicationId = "5b8f6a4d396fa665fdc2b5e8"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_password_payment)
-        if (BootpayBuildConfig.DEBUG) {
-            restApplicationId = "59b731f084382614ebf72215"
-            privateKey = "WwDv0UjfwFa04wYG0LJZZv1xwraQnlhnHE375n52X0U="
-            applicationId = "5b9f51264457636ab9a07cdc"
-        }
     }
 
     fun PaymentTest(v: View?) {
-        BootpayRest.getRestToken(this, this, restApplicationId, privateKey)
+        BootpayRest.getRestToken(this, this, BootpayConfig.restApplicationId, BootpayConfig.privateKey)
     }
 
     //1: 남자, 0: 여자
@@ -66,7 +55,7 @@ class PasswordPaymentActivity: AppCompatActivity(), BootpayRestImplement {
         items.add(item2)
 
         val payload = Payload()
-        payload.setApplicationId(applicationId)
+        payload.setApplicationId(BootpayConfig.applicationId)
             .setOrderName("부트페이 결제테스트")
             .setPg("나이스페이")
             .setMethod("카드간편")

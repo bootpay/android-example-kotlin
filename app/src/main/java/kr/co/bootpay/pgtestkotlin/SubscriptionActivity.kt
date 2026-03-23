@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.bootpay.android.Bootpay
-import kr.co.bootpay.android.constants.BootpayBuildConfig
 import kr.co.bootpay.android.events.BootpayEventListener
 import kr.co.bootpay.android.models.BootExtra
 import kr.co.bootpay.android.models.BootItem
@@ -13,15 +12,10 @@ import kr.co.bootpay.android.models.BootUser
 import kr.co.bootpay.android.models.Payload
 
 class SubscriptionActivity: AppCompatActivity() {
-    //    BootpayWebView bootpayWebView;
-    var applicationId = "5b8f6a4d396fa665fdc2b5e8"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subscription_payment)
-        if (BootpayBuildConfig.DEBUG) {
-            applicationId = "5b9f51264457636ab9a07cdc"
-        }
     }
 
 
@@ -35,7 +29,7 @@ class SubscriptionActivity: AppCompatActivity() {
         items.add(item2)
         val payload = Payload()
 
-        payload.setApplicationId(applicationId)
+        payload.setApplicationId(BootpayConfig.applicationId)
             .setOrderName("부트페이 결제테스트")
             .setPg("페이레터")
             .setMethod("카드자동")
