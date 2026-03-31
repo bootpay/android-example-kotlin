@@ -29,7 +29,9 @@ class SubscriptionActivity: AppCompatActivity() {
         items.add(item2)
         val payload = Payload()
 
+        // client_key가 설정되면 application_id 대신 client_key로 인증됩니다
         payload.setApplicationId(BootpayConfig.applicationId)
+            .setClientKey(BootpayConfig.clientKey)
             .setOrderName("부트페이 결제테스트")
             .setPg("페이레터")
             .setMethod("카드자동")
