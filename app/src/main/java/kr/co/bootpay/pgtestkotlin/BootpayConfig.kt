@@ -21,7 +21,10 @@ object BootpayConfig {
 
     // ===== REST API 키 (deprecated - EasyPay 용) =====
     val restApplicationId: String get() = BuildConfig.BOOTPAY_REST_APPLICATION_ID
-    val privateKey: String get() = BuildConfig.BOOTPAY_PRIVATE_KEY
+    val privateKey: String get() = BuildConfig.BOOTPAY_PRIVATE_KEY // legacy 호환용
+
+    /** 권장 PG API 서버 인증 키. */
+    val serverKey: String get() = BuildConfig.BOOTPAY_SERVER_KEY
 
     // ===== Commerce API 키 =====
     val clientKey: String get() = BuildConfig.BOOTPAY_CLIENT_KEY

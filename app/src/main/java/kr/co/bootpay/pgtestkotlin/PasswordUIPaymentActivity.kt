@@ -26,7 +26,7 @@ class PasswordUIPaymentActivity: AppCompatActivity(), BootpayRestImplement {
     }
 
     fun PaymentTest(v: View?) {
-        BootpayRest.getRestToken(this, this, BootpayConfig.restApplicationId, BootpayConfig.privateKey)
+        BootpayRest.getRestTokenWithClientKey(this, this, BootpayConfig.clientKey, BootpayConfig.serverKey)
     }
 
     //1: 남자, 0: 여자
@@ -54,8 +54,7 @@ class PasswordUIPaymentActivity: AppCompatActivity(), BootpayRestImplement {
         items.add(item2)
         val payload = BioPayload()
         // client_key가 설정되면 application_id 대신 client_key로 인증됩니다
-        payload.setApplicationId(BootpayConfig.applicationId)
-            .setClientKey(BootpayConfig.clientKey)
+        payload.setClientKey(BootpayConfig.clientKey)
             .setOrderName("부트페이 결제테스트")
             .setPg("나이스페이")
             .setOrderId("1234")
