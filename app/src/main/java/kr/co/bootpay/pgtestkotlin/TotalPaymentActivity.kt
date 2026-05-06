@@ -30,10 +30,10 @@ class TotalPaymentActivity: AppCompatActivity() {
         val payload = Payload()
 
         // client_key가 설정되면 application_id 대신 client_key로 인증됩니다
+        // 통합결제는 method/methods 를 지정하지 않는다 — 결제수단 선택 UI 가 직접 노출됨
         payload.setClientKey(BootpayConfig.clientKey)
             .setOrderName("부트페이 결제테스트")
 //            .setPg("페이레터")
-//            .setMethod("카드자동")
             .setOrderId("1234")
             .setPrice(1000.0)
             .setUser(getBootUser())
