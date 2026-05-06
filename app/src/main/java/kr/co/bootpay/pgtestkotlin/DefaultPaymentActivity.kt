@@ -12,6 +12,11 @@ import kr.co.bootpay.android.models.BootUser
 import kr.co.bootpay.android.models.Payload
 
 class DefaultPaymentActivity: AppCompatActivity() {
+    private enum class AuthMode {
+        CLIENT_KEY,
+        LEGACY_APPLICATION_ID,
+        MISSING_KEY
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +25,18 @@ class DefaultPaymentActivity: AppCompatActivity() {
 
 
     fun PaymentTest(v: View?) {
+        requestPayment(AuthMode.CLIENT_KEY)
+    }
+
+    fun LegacyPaymentTest(v: View?) {
+        requestPayment(AuthMode.LEGACY_APPLICATION_ID)
+    }
+
+    fun MissingKeyPaymentTest(v: View?) {
+        requestPayment(AuthMode.MISSING_KEY)
+    }
+
+    private fun requestPayment(authMode: AuthMode) {
         val extra = BootExtra()
             .setCardQuota("0,2,3") // 일시불, 2개월, 3개월 할부 허용, 할부는 최대 12개월까지 사용됨 (5만원 이상 구매시 할부허용 범위)
         val items: MutableList<BootItem> = ArrayList()
@@ -29,9 +46,8 @@ class DefaultPaymentActivity: AppCompatActivity() {
         items.add(item2)
         val payload = Payload()
 
-        // client_key가 설정되면 application_id 대신 client_key로 인증됩니다
-        payload.setClientKey(BootpayConfig.clientKey)
-            .setOrderName("부트페이 결제테스트")
+        applyAuth(payload, authMode)
+        payload.setOrderName("부트페이 결제테스트")
             .setPg("나이스페이")
             .setMethod("네이버페이")
             .setOrderId("1234")
@@ -75,6 +91,14 @@ class DefaultPaymentActivity: AppCompatActivity() {
                     Log.d("done", data)
                 }
             }).requestPayment()
+    }
+
+    private fun applyAuth(payload: Payload, authMode: AuthMode) {
+        when (authMode) {
+            AuthMode.CLIENT_KEY -> payload.setClientKey(BootpayConfig.clientKey)
+            AuthMode.LEGACY_APPLICATION_ID -> payload.setApplicationId(BootpayConfig.applicationId)
+            AuthMode.MISSING_KEY -> Unit // NEED_CLIENT_KEY 검증용
+        }
     }
 
     fun getBootUser(): BootUser? {
