@@ -23,8 +23,7 @@ object BootpayConfig {
     val restApplicationId: String get() = BuildConfig.BOOTPAY_REST_APPLICATION_ID
     val privateKey: String get() = BuildConfig.BOOTPAY_PRIVATE_KEY // legacy 호환용
 
-    /** 권장 PG API 서버 인증 키. */
-    val serverKey: String get() = BuildConfig.BOOTPAY_SERVER_KEY
+    // 주의: server_key (secret) 는 클라이언트에 절대 포함하지 말 것 — 서버 SDK 에서만 사용
 
     // ===== Commerce API 키 =====
     val clientKey: String get() = BuildConfig.BOOTPAY_CLIENT_KEY
